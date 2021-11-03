@@ -6,3 +6,5 @@ xcuserdata/
 DerivedData/
 .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
 /Pods
+/Example/*.xcworkspace
+/Example/Podfile.lock
