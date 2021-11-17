@@ -8,16 +8,19 @@ Pod::Spec.new do |s|
     s.requires_arc = true
 
     # 2
-    s.version = "3.0.1"
+    s.version = "3.0.2"
 
     # 3
     s.license = { :type => "MIT", :file => "LICENSE" }
 
     # 4
-    s.author = { "Dinislam Ishmukhametov" => "dinislam.ishmukhametov@movika.com" }
+    s.author = { 
+        "Dinislam Ishmukhametov" => "dinislam.ishmukhametov@movika.com",
+        "Lenar Gilyazov" => "lenar.gilyazov@movika.com" 
+    }
 
     # 5
-    s.homepage = "https://movika.com"
+    s.homepage = "https://github.com/movika/movika-sdk-ios"
 
     # 6
     s.source = { :git => "https://github.com/movika/movika-sdk-ios.git", :tag => "#{s.version}" }
