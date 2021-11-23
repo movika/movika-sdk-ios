@@ -64,6 +64,11 @@ public enum FallbackStrategy : Swift.String, Swift.Codable, Swift.Hashable {
 }
 public struct LoadStatus {
 }
+public protocol PlayerItemPreloader {
+  func preload(items: [MovikaSDK.PlayerItem])
+  func preloadResult(for item: MovikaSDK.PlayerItem, completionHandler: @escaping (MovikaSDK.PreloadResult) -> Swift.Void)
+  func cancelPreload()
+}
 public protocol PlayerStateDelegate : AnyObject {
   func onMovieEnded()
   func onMovieLoading(progress: Swift.Int)
@@ -149,18 +154,6 @@ extension Swift.String {
   public func segmentName(at index: Swift.Int) -> Swift.String?
   public func playlistVariants(playlistURL: Foundation.URL) -> [MovikaSDK.VariantParams : Foundation.URL]
 }
-public protocol PreloadManager {
-  func preload(items: [MovikaSDK.PlayerItem])
-  func preloadResult(for item: MovikaSDK.PlayerItem, completionHandler: @escaping (MovikaSDK.PreloadResult) -> Swift.Void)
-  func cancelAllPreload()
-}
-public class MKPreloadManager : MovikaSDK.PreloadManager {
-  public init(videoPreloader: MovikaSDK.VideoPreloader)
-  public func preload(items: [MovikaSDK.PlayerItem])
-  public func preloadResult(for item: MovikaSDK.PlayerItem, completionHandler: @escaping (MovikaSDK.PreloadResult) -> Swift.Void)
-  public func cancelAllPreload()
-  @objc deinit
-}
 @_hasMissingDesignatedInitializers public class Movika {
   public static var shared: MovikaSDK.Movika
   public static var isDebug: Swift.Bool {
@@ -200,7 +193,7 @@ public protocol VideoTimeDelegate : AnyObject {
 }
 @objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) final public class MKDefaultPlayerView : UIKit.UIView {
   @objc deinit
-  @_Concurrency.MainActor(unsafe) final public var preloadManager: MovikaSDK.MKPreloadManager
+  @_Concurrency.MainActor(unsafe) final public var playerItemPreloader: MovikaSDK.PlayerItemPreloader
   @_Concurrency.MainActor(unsafe) final public var playerItemFactory: MovikaSDK.AVPlayerItemFactory
   @_Concurrency.MainActor(unsafe) final public var isLocalVideo: Swift.Bool
   @_Concurrency.MainActor(unsafe) final public var currentDuration: Swift.Double {
@@ -273,11 +266,10 @@ public protocol MKManifestDownloader {
   func cancel(url: Foundation.URL)
   func download(url: Foundation.URL, completion: @escaping (MovikaSDK.MKManifest?, Swift.Error?) -> Swift.Void)
 }
-public protocol VideoPreloaderDelegate : AnyObject {
-  func videoPreloader(_ videoPreloader: MovikaSDK.VideoPreloader, didComplitePreload url: Foundation.URL, result: AVFoundation.AVAsset)
+public protocol VideoAssetPreloaderDelegate : AnyObject {
+  func videoAssetPreloader(_ videoAssetPreloader: MovikaSDK.VideoAssetPreloader, didComplitePreload url: Foundation.URL, result: AVFoundation.AVAsset)
 }
-public protocol VideoPreloader {
-  func preload(playerItems: [MovikaSDK.PlayerItem])
+public protocol VideoAssetPreloader {
   func loadAssets(playerItem: MovikaSDK.PlayerItem, completionHandler: @escaping ((AVFoundation.AVAsset?, Swift.Error?) -> Swift.Void))
   func cancel()
 }
@@ -380,13 +372,12 @@ public protocol BaseInteractiveView {
   @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
   @objc deinit
 }
-final public class PreloadResult {
-  final public let playerItem: MovikaSDK.PlayerItem?
-  final public let asset: AVFoundation.AVAsset?
-  final public let image: CoreGraphics.CGImage?
-  final public let error: Swift.Error?
+public struct PreloadResult {
+  public let playerItem: MovikaSDK.PlayerItem?
+  public let asset: AVFoundation.AVAsset?
+  public let image: CoreGraphics.CGImage?
+  public let error: Swift.Error?
   public init(playerItem: MovikaSDK.PlayerItem?, asset: AVFoundation.AVAsset?, image: CoreGraphics.CGImage?, error: Swift.Error?)
-  @objc deinit
 }
 public struct EventData : Swift.Codable, Swift.Hashable {
   public let variants: [MovikaSDK.ChoiceVariant]?
@@ -565,14 +556,6 @@ public struct Surface : Swift.Codable {
     get
     set
   }
-  @_Concurrency.MainActor(unsafe) final public var preloadManager: MovikaSDK.MKPreloadManager {
-    get
-    set
-  }
-  @_Concurrency.MainActor(unsafe) final public var videoType: MovikaSDK.VideoType? {
-    get
-    set
-  }
   @_Concurrency.MainActor(unsafe) final public var playerView: MovikaSDK.MKDefaultPlayerView {
     get
   }
@@ -673,20 +656,6 @@ extension MovikaSDK.MKPlayer : MovikaSDK.MKPlayerPlayback {
   final public func setNextChapter(with chapterId: Swift.String)
   final public func replaceCurrentChapter(with chapterId: Swift.String)
 }
-public class HLSVideoPreloader : MovikaSDK.VideoPreloader {
-  public init()
-  public func loadAssets(playerItem: MovikaSDK.PlayerItem, completionHandler: @escaping ((AVFoundation.AVAsset?, Swift.Error?) -> Swift.Void))
-  public func preload(playerItems: [MovikaSDK.PlayerItem])
-  public func cancel()
-  @objc deinit
-}
-public class MP4VideoPreloader : MovikaSDK.VideoPreloader {
-  public init()
-  public func loadAssets(playerItem: MovikaSDK.PlayerItem, completionHandler: @escaping ((AVFoundation.AVAsset?, Swift.Error?) -> Swift.Void))
-  public func preload(playerItems: [MovikaSDK.PlayerItem])
-  public func cancel()
-  @objc deinit
-}
 @_hasMissingDesignatedInitializers public class AssetsPreloader {
   public static var shared: MovikaSDK.AssetsPreloader
   public func loadAssets(asset: AVFoundation.AVURLAsset, completionHandler: (() -> Swift.Void)? = nil)
@@ -784,10 +753,11 @@ extension MovikaSDK.PlayerItem {
     get
   }
 }
-public enum VideoCacheFacade {
-  public static func assembleCachingVideoPreloader(cacheManager: MovikaSDK.VideoCacheManager) -> MovikaSDK.VideoPreloader
+public enum MovikaPlayerFacade {
+  public static func assembleCachingVideoAssetPreloader(cacheManager: MovikaSDK.VideoCacheManager) -> MovikaSDK.VideoAssetPreloader
   public static func assembleCacheManager() throws -> MovikaSDK.VideoCacheManager
   public static func assembleVideoPreloader(cacheManager: MovikaSDK.VideoCacheManager) throws -> MovikaSDK.MKVideoPreloader
+  public static func assemblePlayerItemPreloader(videoType: MovikaSDK.VideoType) -> MovikaSDK.PlayerItemPreloader
 }
 public protocol DownloadOperation {
   func cancel()
@@ -837,7 +807,7 @@ public enum ChapterType : Swift.String, Swift.Codable, Swift.Hashable {
   }
 }
 public struct MediaPMV3 : Swift.Codable {
-  public let images: [MovikaSDK.MediaPMV3.Image]
+  public let images: [MovikaSDK.MediaPMV3.Image]?
   public let videos: [MovikaSDK.MediaPMV3.Video]
   public init(images: [MovikaSDK.MediaPMV3.Image]? = nil, videos: [MovikaSDK.MediaPMV3.Video])
   public struct Image : Swift.Codable {
@@ -988,10 +958,6 @@ public struct ChoiceVariant : Swift.Codable, Swift.Hashable {
     get
     set
   }
-  @_Concurrency.MainActor(unsafe) final public var preloadManager: MovikaSDK.MKPreloadManager {
-    get
-    set
-  }
   @_Concurrency.MainActor(unsafe) final public var videoType: MovikaSDK.VideoType? {
     get
     set
@@ -1133,7 +1099,7 @@ public struct ManifestPMV3 : Swift.Codable {
   public struct Chapter : Swift.Codable {
     public let id: Swift.String, videoID: Swift.String
     public let containers: [MovikaSDK.ManifestPMV3.Container]?
-    public let branches: [MovikaSDK.ManifestPMV3.Branch]
+    public let branches: [MovikaSDK.ManifestPMV3.Branch]?
     public func encode(to encoder: Swift.Encoder) throws
     public init(from decoder: Swift.Decoder) throws
   }
@@ -1457,6 +1423,9 @@ public struct Event : Swift.Codable {
   public init(type: Swift.String, chapterId: Swift.String, immidiatly: Swift.Bool, embeddedManifest: Swift.String? = nil, fit: [Swift.String]? = nil)
   public init(from decoder: Swift.Decoder) throws
   public func encode(to encoder: Swift.Encoder) throws
+}
+extension MovikaSDK.MKDefaultPlayerView {
+  @_Concurrency.MainActor(unsafe) final public func setupPlayerItemPreloader(videoType: MovikaSDK.VideoType)
 }
 @_hasMissingDesignatedInitializers open class NetworkProvider {
   @objc deinit

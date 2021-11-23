@@ -294,6 +294,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) Class _Nonnull layer
 
 
 
+
 SWIFT_CLASS("_TtC9MovikaSDK25MKDefaultsEventsContainer")
 @interface MKDefaultsEventsContainer : UIView
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
@@ -690,6 +691,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly) Class _Nonnull layer
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
 - (void)layoutSubviews;
 @end
+
 
 
 
