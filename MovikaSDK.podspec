@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
     s.requires_arc = true
 
     # 2
-    s.version = "3.0.3"
+    s.version = "3.0.4"
 
     # 3
     s.license = { :type => "MIT", :file => "LICENSE" }
@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
     s.homepage = "https://github.com/movika/movika-sdk-ios"
 
     # 6
-    s.source = { :git => "https://github.com/movika/movika-sdk-ios.git", :tag => "#{s.version}" }
+    s.source = { :git => "https://github.com/MovikaDinislam/sdk.ci.sandbox.git", :tag => "#{s.version}" }
     # 7
 
     s.ios.vendored_frameworks = 'MovikaSDK.xcframework'

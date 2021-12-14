@@ -18,7 +18,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		NzPJDwTezPSLOhMVrdoHE7NQsc8=
+		pWKF6fbp0SkUGftJeTK6FdHu0VA=
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		1/6ooqGIJoK7p+SHnJSqyDSGY84=
+		PnX9QWalYRMSTWDV3rTh+30kOdU=
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -42,7 +42,7 @@
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		1/6ooqGIJoK7p+SHnJSqyDSGY84=
+		PnX9QWalYRMSTWDV3rTh+30kOdU=
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		1DzqOSdfTvM6yuk2r7dTAPc3xYw=
+		5U29puuGCpyeHyixySrq8ul3jyA=
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64.swiftdoc</key>
 		<data>
@@ -66,7 +66,7 @@
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		1DzqOSdfTvM6yuk2r7dTAPc3xYw=
+		5U29puuGCpyeHyixySrq8ul3jyA=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -134,7 +134,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ia1wTlldI4VFIj9NkVo0x+dQjtOEuqPnC02wzpHBPRQ=
+			YhcGdmE8NUGzREc9v+V0k1jGoVC4OLdO3klmdkP+TCg=
 			</data>
 		</dict>
 		<key>Modules/MovikaSDK.swiftmodule/arm64.swiftdoc</key>
@@ -155,7 +155,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ia1wTlldI4VFIj9NkVo0x+dQjtOEuqPnC02wzpHBPRQ=
+			YhcGdmE8NUGzREc9v+V0k1jGoVC4OLdO3klmdkP+TCg=
 			</data>
 		</dict>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -176,7 +176,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			BSiFdEv9KZDRmATAH7HKpPRNvv9z0Kh0WqLDuqpLyWc=
+			6lhrxO5fW26dteHfK3af+QHv7s32JIQDme0NwJtyxYQ=
 			</data>
 		</dict>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64.swiftdoc</key>
@@ -197,7 +197,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			BSiFdEv9KZDRmATAH7HKpPRNvv9z0Kh0WqLDuqpLyWc=
+			6lhrxO5fW26dteHfK3af+QHv7s32JIQDme0NwJtyxYQ=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
