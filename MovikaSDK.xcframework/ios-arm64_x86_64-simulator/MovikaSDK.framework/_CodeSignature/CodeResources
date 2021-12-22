@@ -6,11 +6,11 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		1JIf6Xzx/NXu2SSQ+S0+TdrBrpQ=
+		1mAoA553pNHPRAJFAtC8IM2TJdg=
 		</data>
 		<key>Headers/MovikaSDK-Swift.h</key>
 		<data>
-		HtAAYqbDw6BpPXUJbwy/7fuFADY=
+		/4fFSeeIyoCekivqwxEQ9P7sHVA=
 		</data>
 		<key>Headers/MovikaSDK.h</key>
 		<data>
@@ -18,55 +18,55 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		pWKF6fbp0SkUGftJeTK6FdHu0VA=
+		GdEe3+WcI1nXHb37r0buruLzUmc=
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		j8goim0uM7M5gh9kif50TRhSUdQ=
+		jQOBSVtfsWKxOgeUjT/jicdcp7Y=
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		HFuZmnIv4qajZROJMGuDS3m6BCc=
+		ONM3KHOFZZ+LIZDeUkGa7U6sT5A=
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		PnX9QWalYRMSTWDV3rTh+30kOdU=
+		LXu5nFAap7UL19TxPnsJFc5Llvw=
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		j8goim0uM7M5gh9kif50TRhSUdQ=
+		jQOBSVtfsWKxOgeUjT/jicdcp7Y=
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/arm64.swiftinterface</key>
 		<data>
-		HFuZmnIv4qajZROJMGuDS3m6BCc=
+		ONM3KHOFZZ+LIZDeUkGa7U6sT5A=
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		PnX9QWalYRMSTWDV3rTh+30kOdU=
+		LXu5nFAap7UL19TxPnsJFc5Llvw=
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		mTJtmpncGjfqSomyb5/R/rnq2fE=
+		92h6fr8DClqtM+UQjcPPApSItj8=
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		/hfSPWbLcycE/rzx7OsLJEFEfhI=
+		U1vwOcIv52qSy6NXdNBB2lVGLy8=
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		5U29puuGCpyeHyixySrq8ul3jyA=
+		dIzfRKDptJtRQIHSqn7L+Ov+hDg=
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		mTJtmpncGjfqSomyb5/R/rnq2fE=
+		92h6fr8DClqtM+UQjcPPApSItj8=
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64.swiftinterface</key>
 		<data>
-		/hfSPWbLcycE/rzx7OsLJEFEfhI=
+		U1vwOcIv52qSy6NXdNBB2lVGLy8=
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		5U29puuGCpyeHyixySrq8ul3jyA=
+		dIzfRKDptJtRQIHSqn7L+Ov+hDg=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -99,14 +99,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			OhNcpZS8vtcYzS86qnLErnGRTmD1MKAqXw4cB9Aozt0=
+			POo4iS60lAHdXSYrKLKx8/iKEQoVzItiK5mOpAuU8HQ=
 			</data>
 		</dict>
 		<key>Headers/MovikaSDK-Swift.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			BZkxqsCrFIcSt/j0OBVRqSpdJ5m816cFdw1dSAG1oPg=
+			/0EkWq53yZR6/M81V9MhIn/wh8UCHv+ibu0ghOA2mP0=
 			</data>
 		</dict>
 		<key>Headers/MovikaSDK.h</key>
@@ -120,84 +120,84 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			pZVpQ4+pqR95RAJsFB6Sx/v7VZF9Y/InmTvtUXW04DA=
+			MTeCtcsopYjKWA+nu824epM/PMx+qhNUWUOx3gMu/4Q=
 			</data>
 		</dict>
 		<key>Modules/MovikaSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Hyk5etKX6hnO8Z5/CDDSxuQbsa1qqCaiUvVVKh/MAVw=
+			J6YqwEmb9UedFqO0iDoKIzf7Pr7Y8XQKgj0moSx/BHY=
 			</data>
 		</dict>
 		<key>Modules/MovikaSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			YhcGdmE8NUGzREc9v+V0k1jGoVC4OLdO3klmdkP+TCg=
+			krVFr2rxKqAEPE/fwlUjYxdhD9/QhQymje/A8AuH+7Q=
 			</data>
 		</dict>
 		<key>Modules/MovikaSDK.swiftmodule/arm64.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			pZVpQ4+pqR95RAJsFB6Sx/v7VZF9Y/InmTvtUXW04DA=
+			MTeCtcsopYjKWA+nu824epM/PMx+qhNUWUOx3gMu/4Q=
 			</data>
 		</dict>
 		<key>Modules/MovikaSDK.swiftmodule/arm64.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Hyk5etKX6hnO8Z5/CDDSxuQbsa1qqCaiUvVVKh/MAVw=
+			J6YqwEmb9UedFqO0iDoKIzf7Pr7Y8XQKgj0moSx/BHY=
 			</data>
 		</dict>
 		<key>Modules/MovikaSDK.swiftmodule/arm64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			YhcGdmE8NUGzREc9v+V0k1jGoVC4OLdO3klmdkP+TCg=
+			krVFr2rxKqAEPE/fwlUjYxdhD9/QhQymje/A8AuH+7Q=
 			</data>
 		</dict>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			1ThmvjZIBnjb22n5f0Ch1tN/h1MLoGQf0KEIEEV0caM=
+			3KKMKuOOEEKTTpuq3joVWDWWt+V8Q0F8XI0I5rILBTk=
 			</data>
 		</dict>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			h1TuPc36abjmD1P3R0o/mWxstWTLDH1wHlxq6NuCMZY=
+			ZpnrDnHbHlPucY//6vO3VmLKUZXco1TyGF9i1hDHFBA=
 			</data>
 		</dict>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			6lhrxO5fW26dteHfK3af+QHv7s32JIQDme0NwJtyxYQ=
+			oNlUxsnfmPDn5473OLbZVsqBSEzN07QTkAfcflygEMA=
 			</data>
 		</dict>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			1ThmvjZIBnjb22n5f0Ch1tN/h1MLoGQf0KEIEEV0caM=
+			3KKMKuOOEEKTTpuq3joVWDWWt+V8Q0F8XI0I5rILBTk=
 			</data>
 		</dict>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			h1TuPc36abjmD1P3R0o/mWxstWTLDH1wHlxq6NuCMZY=
+			ZpnrDnHbHlPucY//6vO3VmLKUZXco1TyGF9i1hDHFBA=
 			</data>
 		</dict>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			6lhrxO5fW26dteHfK3af+QHv7s32JIQDme0NwJtyxYQ=
+			oNlUxsnfmPDn5473OLbZVsqBSEzN07QTkAfcflygEMA=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
