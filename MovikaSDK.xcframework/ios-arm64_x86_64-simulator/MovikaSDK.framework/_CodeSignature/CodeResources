@@ -10,7 +10,7 @@
 		</data>
 		<key>Headers/MovikaSDK-Swift.h</key>
 		<data>
-		/4fFSeeIyoCekivqwxEQ9P7sHVA=
+		3lW6ehtx/puNlp4bfXUnHIXVMMM=
 		</data>
 		<key>Headers/MovikaSDK.h</key>
 		<data>
@@ -18,7 +18,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		GdEe3+WcI1nXHb37r0buruLzUmc=
+		uOBpjzJW68mzV7JdCW5+w3rfDBU=
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -26,11 +26,11 @@
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		ONM3KHOFZZ+LIZDeUkGa7U6sT5A=
+		rVnnQofnRP0fkKdw2GWuIgNhESg=
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		LXu5nFAap7UL19TxPnsJFc5Llvw=
+		/Ek8SFbtYib18bJAxwxTGZVXybE=
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -38,11 +38,11 @@
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/arm64.swiftinterface</key>
 		<data>
-		ONM3KHOFZZ+LIZDeUkGa7U6sT5A=
+		rVnnQofnRP0fkKdw2GWuIgNhESg=
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		LXu5nFAap7UL19TxPnsJFc5Llvw=
+		/Ek8SFbtYib18bJAxwxTGZVXybE=
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -50,11 +50,11 @@
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		U1vwOcIv52qSy6NXdNBB2lVGLy8=
+		YpC3TINmZlhPHbnqriURMF6KH7E=
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		dIzfRKDptJtRQIHSqn7L+Ov+hDg=
+		EqoLrYI4A0lKXTogKZEZQZj9R+8=
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64.swiftdoc</key>
 		<data>
@@ -62,11 +62,11 @@
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64.swiftinterface</key>
 		<data>
-		U1vwOcIv52qSy6NXdNBB2lVGLy8=
+		YpC3TINmZlhPHbnqriURMF6KH7E=
 		</data>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		dIzfRKDptJtRQIHSqn7L+Ov+hDg=
+		EqoLrYI4A0lKXTogKZEZQZj9R+8=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -106,7 +106,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			/0EkWq53yZR6/M81V9MhIn/wh8UCHv+ibu0ghOA2mP0=
+			Am7eJC2Z9uTG3S2XhEbdo5Syz4CGMf4U4rbTerk+SAA=
 			</data>
 		</dict>
 		<key>Headers/MovikaSDK.h</key>
@@ -127,14 +127,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			J6YqwEmb9UedFqO0iDoKIzf7Pr7Y8XQKgj0moSx/BHY=
+			65Oj9f3/HZmi/KljWe0Dke3SfCROUNBvsNjlHe4LShs=
 			</data>
 		</dict>
 		<key>Modules/MovikaSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			krVFr2rxKqAEPE/fwlUjYxdhD9/QhQymje/A8AuH+7Q=
+			ii28RMzxLUV6TxzIkTr9ck3oGR5bczb56ekoUMHUHq8=
 			</data>
 		</dict>
 		<key>Modules/MovikaSDK.swiftmodule/arm64.swiftdoc</key>
@@ -148,14 +148,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			J6YqwEmb9UedFqO0iDoKIzf7Pr7Y8XQKgj0moSx/BHY=
+			65Oj9f3/HZmi/KljWe0Dke3SfCROUNBvsNjlHe4LShs=
 			</data>
 		</dict>
 		<key>Modules/MovikaSDK.swiftmodule/arm64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			krVFr2rxKqAEPE/fwlUjYxdhD9/QhQymje/A8AuH+7Q=
+			ii28RMzxLUV6TxzIkTr9ck3oGR5bczb56ekoUMHUHq8=
 			</data>
 		</dict>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -169,14 +169,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ZpnrDnHbHlPucY//6vO3VmLKUZXco1TyGF9i1hDHFBA=
+			6Ctq5vU0drNehehE38Qm1kxXHRz+/BKvNeogBs3vbOM=
 			</data>
 		</dict>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			oNlUxsnfmPDn5473OLbZVsqBSEzN07QTkAfcflygEMA=
+			pDumsr6nN1QcyweLTW0/nuqIMqQ4vsfqxr674cpzL2k=
 			</data>
 		</dict>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64.swiftdoc</key>
@@ -190,14 +190,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ZpnrDnHbHlPucY//6vO3VmLKUZXco1TyGF9i1hDHFBA=
+			6Ctq5vU0drNehehE38Qm1kxXHRz+/BKvNeogBs3vbOM=
 			</data>
 		</dict>
 		<key>Modules/MovikaSDK.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			oNlUxsnfmPDn5473OLbZVsqBSEzN07QTkAfcflygEMA=
+			pDumsr6nN1QcyweLTW0/nuqIMqQ4vsfqxr674cpzL2k=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

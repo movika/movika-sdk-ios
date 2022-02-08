@@ -14,7 +14,7 @@ import ObjectiveC
 import Swift
 import UIKit
 import _Concurrency
-@objc @_inheritsConvenienceInitializers @available(*, deprecated, message: "Will be removed in version 3.1.0. Use the MKEasyPlayer")
+@objc @_inheritsConvenienceInitializers @available(*, deprecated, message: "Will be removed in version 3.2.0. Use the MKEasyPlayer")
 @_Concurrency.MainActor(unsafe) open class MovikaPlayerViewController : UIKit.UIViewController, MovikaSDK.MKPlayerDelegate {
   @objc deinit
   @_Concurrency.MainActor(unsafe) open var mkplayer: MovikaSDK.MKReadyPlayer!

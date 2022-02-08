@@ -340,7 +340,7 @@ SWIFT_CLASS("_TtC9MovikaSDK7MapView")
 @end
 
 
-SWIFT_CLASS("_TtC9MovikaSDK26MovikaPlayerViewController") SWIFT_DEPRECATED_MSG("Will be removed in version 3.1.0. Use the MKEasyPlayer")
+SWIFT_CLASS("_TtC9MovikaSDK26MovikaPlayerViewController") SWIFT_DEPRECATED_MSG("Will be removed in version 3.2.0. Use the MKEasyPlayer")
 @interface MovikaPlayerViewController : UIViewController
 - (void)viewDidLoad;
 - (void)close;
