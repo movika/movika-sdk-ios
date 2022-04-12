@@ -320,17 +320,6 @@ SWIFT_CLASS("_TtC9MovikaSDK19MKInteractivePlayer")
 @end
 
 
-
-SWIFT_CLASS("_TtC9MovikaSDK13MKReadyPlayer") SWIFT_DEPRECATED_MSG("Will be removed in version 3.1.0. Use the MKEasyPlayer")
-@interface MKReadyPlayer : UIView
-@property (nonatomic, readonly, copy) NSArray<id <UIFocusEnvironment>> * _Nonnull preferredFocusEnvironments;
-- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-
-
 @class UIScrollView;
 
 SWIFT_CLASS("_TtC9MovikaSDK7MapView")
@@ -339,15 +328,6 @@ SWIFT_CLASS("_TtC9MovikaSDK7MapView")
 - (void)layoutSubviews;
 - (UIView * _Nullable)viewForZoomingInScrollView:(UIScrollView * _Nonnull)scrollView SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
-@end
-
-
-SWIFT_CLASS("_TtC9MovikaSDK26MovikaPlayerViewController") SWIFT_DEPRECATED_MSG("Will be removed in version 3.2.0. Use the MKEasyPlayer")
-@interface MovikaPlayerViewController : UIViewController
-- (void)viewDidLoad;
-- (void)close;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
@@ -365,8 +345,6 @@ SWIFT_CLASS("_TtC9MovikaSDK16TextFieldControl")
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
 - (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
 @end
-
-
 
 
 
@@ -724,17 +702,6 @@ SWIFT_CLASS("_TtC9MovikaSDK19MKInteractivePlayer")
 @end
 
 
-
-SWIFT_CLASS("_TtC9MovikaSDK13MKReadyPlayer") SWIFT_DEPRECATED_MSG("Will be removed in version 3.1.0. Use the MKEasyPlayer")
-@interface MKReadyPlayer : UIView
-@property (nonatomic, readonly, copy) NSArray<id <UIFocusEnvironment>> * _Nonnull preferredFocusEnvironments;
-- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-
-
 @class UIScrollView;
 
 SWIFT_CLASS("_TtC9MovikaSDK7MapView")
@@ -743,15 +710,6 @@ SWIFT_CLASS("_TtC9MovikaSDK7MapView")
 - (void)layoutSubviews;
 - (UIView * _Nullable)viewForZoomingInScrollView:(UIScrollView * _Nonnull)scrollView SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
-@end
-
-
-SWIFT_CLASS("_TtC9MovikaSDK26MovikaPlayerViewController") SWIFT_DEPRECATED_MSG("Will be removed in version 3.2.0. Use the MKEasyPlayer")
-@interface MovikaPlayerViewController : UIViewController
-- (void)viewDidLoad;
-- (void)close;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
@@ -769,8 +727,6 @@ SWIFT_CLASS("_TtC9MovikaSDK16TextFieldControl")
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
 - (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
 @end
-
-
 
 
 
