@@ -249,13 +249,6 @@ SWIFT_CLASS("_TtC9MovikaSDK13DebugMenuView")
 
 
 
-SWIFT_CLASS("_TtC9MovikaSDK14GameSavingView")
-@interface GameSavingView : UIView
-- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder SWIFT_UNAVAILABLE;
-@end
-
-
 
 SWIFT_CLASS("_TtC9MovikaSDK24InteractiveContainerView")
 @interface InteractiveContainerView : UIView
@@ -303,6 +296,7 @@ SWIFT_CLASS("_TtC9MovikaSDK25MKDefaultsEventsContainer")
 
 
 
+
 @protocol UIFocusEnvironment;
 
 @interface MKDefaultsEventsContainer (SWIFT_EXTENSION(MovikaSDK))
@@ -343,7 +337,6 @@ SWIFT_CLASS("_TtC9MovikaSDK16TextFieldControl")
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder SWIFT_UNAVAILABLE;
 - (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
 @end
-
 
 
 
