@@ -119,13 +119,6 @@ extension Swift.String {
   public static var isDebug: Swift.Bool {
     get
   }
-  public static var isIgnorePinning: Swift.Bool {
-    get
-  }
-  public static var isNeedToVerifyToken: Swift.Bool {
-    get
-  }
-  public static var isLoggingEnabled: Swift.Bool
   public static var baseLink: Swift.String {
     get
   }
@@ -133,8 +126,10 @@ extension Swift.String {
     get
     set
   }
-  public static func setupBaseLink(_ link: Swift.String)
   @objc deinit
+}
+extension MovikaSDK.Movika {
+  public static func setupBaseLink(_ link: Swift.String)
 }
 public struct KarmaData : Swift.Codable, Swift.Hashable {
   public var outcomes: [MovikaSDK.Outcome]?
@@ -227,12 +222,17 @@ public protocol MKManifestDownloader {
   func download(url: Foundation.URL, completion: @escaping (MovikaSDK.MKManifest?, Swift.Error?) -> Swift.Void)
 }
 public typealias MKEventResultCompletion = (MovikaSDK.MKEventResultAction) -> Swift.Void
-public protocol MKEventView {
+public protocol MKEventView : MovikaSDK.MKPlaybackObserver {
   var eventResultCompletion: MovikaSDK.MKEventResultCompletion? { get set }
   var view: UIKit.UIView? { get }
   func eventViewWillDisappear()
 }
-public protocol MKPlaybackEventView : MovikaSDK.MKEventView {
+extension MovikaSDK.MKEventView {
+  public func playerDidPlay()
+  public func playerDidPause()
+  public func playerDidUpdate(time: Swift.Double)
+}
+public protocol MKPlaybackObserver {
   func playerDidPlay()
   func playerDidPause()
   func playerDidUpdate(time: Swift.Double)
@@ -1101,7 +1101,7 @@ public struct ManifestPMV3 : Swift.Codable {
   public struct Branch : Swift.Codable {
     public let id: Swift.String
     public let chapterID: Swift.String
-    public let weight: Swift.Float
+    public let weight: Swift.Float?
     public let isDefault: Swift.Bool?
     public let manifestURL: Foundation.URL?
     public func encode(to encoder: Swift.Encoder) throws
@@ -1353,7 +1353,7 @@ public protocol DownloadManager {
   func queueDownload(_ url: Foundation.URL, completionHandler: @escaping (Foundation.URL) -> Swift.Void) -> MovikaSDK.DownloadOperation
 }
 public struct Branch : Swift.Codable, Swift.Hashable {
-  public init(id: Swift.String, weight: Swift.Float, isDefault: Swift.Bool? = nil, chapterLink: MovikaSDK.ChapterLink)
+  public init(id: Swift.String, weight: Swift.Float?, isDefault: Swift.Bool? = nil, chapterLink: MovikaSDK.ChapterLink)
   public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: MovikaSDK.Branch, b: MovikaSDK.Branch) -> Swift.Bool
   public func encode(to encoder: Swift.Encoder) throws
