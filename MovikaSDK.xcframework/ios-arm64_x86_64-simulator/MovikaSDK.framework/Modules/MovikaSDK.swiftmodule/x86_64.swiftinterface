@@ -194,7 +194,7 @@ extension MovikaSDK.MKDefaultPlayerView : MovikaSDK.MKPlaybackController {
   @_Concurrency.MainActor(unsafe) final public func setVideoGravity(videoGravity: MovikaSDK.VideoGravity)
   @_Concurrency.MainActor(unsafe) final public func seek(position: Swift.Double)
   @_Concurrency.MainActor(unsafe) final public func play()
-  @_Concurrency.MainActor(unsafe) final public func currentItemDuration() -> Swift.Double
+  @_Concurrency.MainActor(unsafe) final public func currentItemDuration() -> Swift.Double?
   @_Concurrency.MainActor(unsafe) final public func currentTime() -> Swift.Double
   @_Concurrency.MainActor(unsafe) final public func pause()
 }
@@ -300,7 +300,10 @@ public protocol QueuePlayer {
 public struct MKEvent : Swift.Hashable, Swift.Codable {
   public let id: Swift.String
   public let chapterId: Swift.String
+  public let chapterDuration: Swift.Double?
   public let containerType: Swift.String
+  public let startTime: Swift.Double
+  public let endTime: Swift.Double?
   public let controls: [MovikaSDK.Control]
   public let props: Foundation.Data?
   public let containerAction: MovikaSDK.ResultAction?
@@ -1253,7 +1256,7 @@ public protocol MKPlaybackController : AnyObject {
   func removeNextVideos() -> Swift.Int
   func removeAllVideos() -> Swift.Int
   func currentTime() -> Swift.Double
-  func currentItemDuration() -> Swift.Double
+  func currentItemDuration() -> Swift.Double?
 }
 public protocol MKTimepointsController : AnyObject {
   func appendPlayback(timepoint: Swift.Double)
@@ -1477,7 +1480,7 @@ public struct InteractiveEvent : Swift.Codable, Swift.Hashable {
   public init(from decoder: Swift.Decoder) throws
 }
 extension MovikaSDK.MKEvent {
-  public init(interactiveEvent: MovikaSDK.InteractiveEvent)
+  public init(interactiveEvent: MovikaSDK.InteractiveEvent, chapterDuration: Swift.Double?)
 }
 public struct MKEventResultAction : Swift.Hashable, Swift.Codable {
   public let event: MovikaSDK.MKEvent
