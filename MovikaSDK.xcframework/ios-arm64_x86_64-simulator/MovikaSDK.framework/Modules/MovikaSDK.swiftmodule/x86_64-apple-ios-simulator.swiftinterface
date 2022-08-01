@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.5.2 (swiftlang-1300.0.47.5 clang-1300.0.29.30)
+// swift-compiler-version: Apple Swift version 5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)
 // swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name MovikaSDK
 import AVFoundation
 import CommonCrypto
@@ -39,6 +39,7 @@ public protocol PlayerItemPreloader {
   @objc deinit
 }
 extension MovikaSDK.DebugMenuView : MovikaSDK.MKPlayerDelegate {
+  @_Concurrency.MainActor(unsafe) public func mkplayer(_ player: MovikaSDK.MKPlayer, didInteractWith eventContainer: MovikaSDK.MKEvent, byEvent event: MovikaSDK.Control.Event)
   @_Concurrency.MainActor(unsafe) public func mkplayer(_ player: MovikaSDK.MKPlayer, willSavePoint time: Swift.Double)
   @_Concurrency.MainActor(unsafe) public func mkplayer(_ player: MovikaSDK.MKPlayer, didEndPlaying manifest: MovikaSDK.MKManifest)
   @_Concurrency.MainActor(unsafe) public func mkplayer(_ player: MovikaSDK.MKPlayer, willShowEventForChapter chapter: MovikaSDK.Chapter, where isChapterFirst: Swift.Bool)
@@ -523,14 +524,6 @@ infix operator +^= : ComparisonPrecedence
 public protocol AVPlayerItemFactory {
   func create(from asset: AVFoundation.AVAsset, and playerItem: MovikaSDK.PlayerItem) -> AVFoundation.AVPlayerItem
 }
-public enum EventType : Swift.String, Swift.Codable, Swift.Hashable {
-  case onClick
-  public init?(rawValue: Swift.String)
-  public typealias RawValue = Swift.String
-  public var rawValue: Swift.String {
-    get
-  }
-}
 public struct Surface : Swift.Codable {
   public enum ClassType : Swift.String, Swift.Codable {
     case triangle, circle, rectangle
@@ -580,6 +573,17 @@ extension MovikaSDK.MKInteractivePlayer : MovikaSDK.MKPlayerPlayback {
   @_Concurrency.MainActor(unsafe) final public func playPreviousChapter()
   @_Concurrency.MainActor(unsafe) final public func setNextChapter(with chapterId: Swift.String)
   @_Concurrency.MainActor(unsafe) final public func replaceCurrentChapter(with chapterId: Swift.String)
+}
+public struct Constants {
+  public struct Endpoint {
+    public static var all: [Swift.String]
+    public static var dev: Swift.String
+    public static var prod: Swift.String
+    public static var stage: Swift.String
+  }
+  public static var headers: [Swift.String : Any] {
+    get
+  }
 }
 public enum InteractiveType : Swift.Int, Swift.Codable, Swift.Hashable {
   case choice
@@ -671,9 +675,9 @@ public struct Control : Swift.Codable, Swift.Hashable {
   public let layoutParams: Foundation.Data
   public init(id: Swift.String, type: Swift.String, events: [MovikaSDK.Control.Event], props: Foundation.Data, layoutParams: Foundation.Data)
   public struct Event : Swift.Codable, Swift.Hashable {
-    public let type: MovikaSDK.EventType
+    public let type: Swift.String
     public let action: MovikaSDK.ResultAction
-    public init(type: MovikaSDK.EventType, action: MovikaSDK.ResultAction)
+    public init(type: Swift.String, action: MovikaSDK.ResultAction)
     public func hash(into hasher: inout Swift.Hasher)
     public static func == (a: MovikaSDK.Control.Event, b: MovikaSDK.Control.Event) -> Swift.Bool
     public func encode(to encoder: Swift.Encoder) throws
@@ -812,8 +816,8 @@ public struct History : Swift.Codable, Swift.Hashable {
     }
     public init(from decoder: Swift.Decoder) throws
   }
-  public static func == (a: MovikaSDK.History, b: MovikaSDK.History) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: MovikaSDK.History, b: MovikaSDK.History) -> Swift.Bool
   public func encode(to encoder: Swift.Encoder) throws
   public var hashValue: Swift.Int {
     get
@@ -973,10 +977,10 @@ public protocol MKPlayerDelegate : AnyObject {
   func mkplayer(_ player: MovikaSDK.MKPlayer, showChapter chapter: MovikaSDK.Chapter)
   func mkplayer(_ player: MovikaSDK.MKPlayer, showEventForChapter chapter: MovikaSDK.Chapter, with progress: Swift.Double)
   func mkplayer(_ player: MovikaSDK.MKPlayer, didAppearEventWithChapter chapter: MovikaSDK.Chapter)
+  func mkplayer(_ player: MovikaSDK.MKPlayer, didInteractWith eventContainer: MovikaSDK.MKEvent, byEvent event: MovikaSDK.Control.Event)
 }
 extension MovikaSDK.MKPlayerDelegate {
   public func mkplayer(_ player: MovikaSDK.MKPlayer, error: Swift.Error)
-  public func mkplayer(_ player: MovikaSDK.MKPlayer, result: MovikaSDK.MKEventResultAction)
   public func mkplayer(_ player: MovikaSDK.MKPlayer, isPause: Swift.Bool)
   public func mkplayer(_ player: MovikaSDK.MKPlayer, didUpdate state: MovikaSDK.MKPlayerState)
   public func mkplayer(_ player: MovikaSDK.MKPlayer, didEndPlaying manifest: MovikaSDK.MKManifest)
@@ -1471,8 +1475,8 @@ public struct InteractiveEvent : Swift.Codable, Swift.Hashable {
   public let containerAction: MovikaSDK.ResultAction?
   public let props: Foundation.Data?
   public init(id: Swift.String, chapterLink: MovikaSDK.ChapterLink, type: Swift.String, time: Swift.Double, timeout: Swift.Double?, eventData: MovikaSDK.EventData, playbackType: MovikaSDK.PlaybackType? = nil, controls: [MovikaSDK.Control] = [], fallbackStrategy: MovikaSDK.FallbackStrategy? = nil, containerAction: MovikaSDK.ResultAction? = nil, props: Foundation.Data? = nil)
-  public static func == (a: MovikaSDK.InteractiveEvent, b: MovikaSDK.InteractiveEvent) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: MovikaSDK.InteractiveEvent, b: MovikaSDK.InteractiveEvent) -> Swift.Bool
   public func encode(to encoder: Swift.Encoder) throws
   public var hashValue: Swift.Int {
     get
@@ -1483,9 +1487,9 @@ extension MovikaSDK.MKEvent {
   public init(interactiveEvent: MovikaSDK.InteractiveEvent, chapterDuration: Swift.Double?)
 }
 public struct MKEventResultAction : Swift.Hashable, Swift.Codable {
-  public let event: MovikaSDK.MKEvent
-  public let resultAction: MovikaSDK.ResultAction
-  public init(event: MovikaSDK.MKEvent, resultAction: MovikaSDK.ResultAction)
+  public let eventContainer: MovikaSDK.MKEvent
+  public let event: MovikaSDK.Control.Event
+  public init(eventContainer: MovikaSDK.MKEvent, event: MovikaSDK.Control.Event)
   public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: MovikaSDK.MKEventResultAction, b: MovikaSDK.MKEventResultAction) -> Swift.Bool
   public func encode(to encoder: Swift.Encoder) throws
@@ -1547,7 +1551,6 @@ extension MovikaSDK.MKPlayerError : Swift.Hashable {}
 extension MovikaSDK.ChapterChangeMode : Swift.Equatable {}
 extension MovikaSDK.ChapterChangeMode : Swift.Hashable {}
 extension MovikaSDK.ChapterChangeMode : Swift.RawRepresentable {}
-extension MovikaSDK.EventType : Swift.RawRepresentable {}
 extension MovikaSDK.Surface.ClassType : Swift.Equatable {}
 extension MovikaSDK.Surface.ClassType : Swift.Hashable {}
 extension MovikaSDK.Surface.ClassType : Swift.RawRepresentable {}
