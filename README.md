@@ -1,3 +1,7 @@
+## Interactive Player Scheme 
+ 
+![alt Interactive Player Scheme ](https://github.com/movika/movika-sdk-ios/blob/master/player.jpg)
+
 # Getting started
 
 ## 1. Add sdk from the pod
