@@ -6,6 +6,6 @@ framework module MovikaSDK {
 }
 
 module MovikaSDK.Swift {
-    header "MovikaSDK-Swift.h"
-    requires objc
+  header "MovikaSDK-Swift.h"
+  requires objc
 }

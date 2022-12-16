@@ -1,6 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)
+// swift-compiler-version: Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)
 // swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name MovikaSDK
+// swift-module-flags-ignorable: -enable-bare-slash-regex
 import AVFoundation
 import CommonCrypto
 import CoreData
@@ -12,6 +13,9 @@ import MobileCoreServices
 import Swift
 import UIKit
 import _Concurrency
+import _StringProcessing
+import os.log
+import os
 public enum FallbackStrategy : Swift.String, Swift.Codable, Swift.Hashable {
   case await
   case random
@@ -26,6 +30,7 @@ public enum FallbackStrategy : Swift.String, Swift.Codable, Swift.Hashable {
   }
 }
 @objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class ButtonControl : UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func hitTest(_ point: CoreFoundation.CGPoint, with event: UIKit.UIEvent?) -> UIKit.UIView?
   @objc deinit
 }
 public protocol PlayerItemPreloader {
@@ -35,10 +40,11 @@ public protocol PlayerItemPreloader {
 }
 @objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class DebugMenuView : UIKit.UIView {
   @_Concurrency.MainActor(unsafe) weak public var delegate: MovikaSDK.DebugMenuDelegate?
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func hitTest(_ point: CoreGraphics.CGPoint, with event: UIKit.UIEvent?) -> UIKit.UIView?
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func hitTest(_ point: CoreFoundation.CGPoint, with event: UIKit.UIEvent?) -> UIKit.UIView?
   @objc deinit
 }
 extension MovikaSDK.DebugMenuView : MovikaSDK.MKPlayerDelegate {
+  @_Concurrency.MainActor(unsafe) public func mkplayer(_ player: MovikaSDK.MKPlayer, didInteractWith eventContainer: MovikaSDK.MKEvent, byEvent event: MovikaSDK.Control.Event)
   @_Concurrency.MainActor(unsafe) public func mkplayer(_ player: MovikaSDK.MKPlayer, willSavePoint time: Swift.Double)
   @_Concurrency.MainActor(unsafe) public func mkplayer(_ player: MovikaSDK.MKPlayer, didEndPlaying manifest: MovikaSDK.MKManifest)
   @_Concurrency.MainActor(unsafe) public func mkplayer(_ player: MovikaSDK.MKPlayer, willShowEventForChapter chapter: MovikaSDK.Chapter, where isChapterFirst: Swift.Bool)
@@ -53,16 +59,17 @@ extension MovikaSDK.DebugMenuView : MovikaSDK.MKPlayerDelegate {
 }
 @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class RelativeEventLayout : UIKit.UIView {
   public struct Params : MovikaSDK.EventLayoutParams {
-    public init(relativePosition: CoreGraphics.CGPoint, relativeSize: CoreGraphics.CGSize, angle: CoreGraphics.CGFloat)
+    public init(relativePosition: CoreFoundation.CGPoint, relativeSize: CoreFoundation.CGSize, angle: CoreFoundation.CGFloat)
   }
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
   @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
   @objc deinit
 }
 extension MovikaSDK.RelativeEventLayout : MovikaSDK.EventLayout {
   @_Concurrency.MainActor(unsafe) public func append(control: UIKit.UIView, params: MovikaSDK.EventLayoutParams)
   @_Concurrency.MainActor(unsafe) public func remove(control: UIKit.UIView)
-  @_Concurrency.MainActor(unsafe) public func measure(params: MovikaSDK.EventLayoutParams, frame: CoreGraphics.CGRect) -> CoreGraphics.CGRect
+  @_Concurrency.MainActor(unsafe) public func measure(params: MovikaSDK.EventLayoutParams, frame: CoreFoundation.CGRect) -> CoreFoundation.CGRect
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func hitTest(_ point: CoreFoundation.CGPoint, with event: UIKit.UIEvent?) -> UIKit.UIView?
 }
 public enum MKResultAction : Swift.Hashable, Swift.Codable {
   case setNextBranch(branchId: Swift.String, shouldOpenNow: Swift.Bool)
@@ -151,33 +158,18 @@ public protocol VideoTimeDelegate : AnyObject {
   @_Concurrency.MainActor(unsafe) final public var playerItemPreloader: MovikaSDK.PlayerItemPreloader
   @_Concurrency.MainActor(unsafe) final public var playerItemFactory: MovikaSDK.AVPlayerItemFactory
   @_Concurrency.MainActor(unsafe) final public var isLocalVideo: Swift.Bool
-  @_Concurrency.MainActor(unsafe) final public var currentDuration: Swift.Double {
-    get
-  }
-  @_Concurrency.MainActor(unsafe) final public var bufferProgress: Swift.Double {
-    get
-  }
-  @_Concurrency.MainActor(unsafe) final public var currentBufferDuration: Swift.Double {
-    get
-  }
-  @_Concurrency.MainActor(unsafe) final public var totalDuration: Swift.Double {
-    get
-  }
-  @_Concurrency.MainActor(unsafe) final public var isBuffered: Swift.Bool {
-    get
-  }
   @_Concurrency.MainActor(unsafe) final public var avPlayer: AVFoundation.AVPlayer {
     get
   }
-  @_Concurrency.MainActor(unsafe) final public var videoRect: CoreGraphics.CGRect {
+  @_Concurrency.MainActor(unsafe) final public var videoRect: CoreFoundation.CGRect {
     get
   }
   @_Concurrency.MainActor(unsafe) final public var videoGravity: MovikaSDK.VideoGravity
   @_Concurrency.MainActor(unsafe) weak final public var delegate: MovikaSDK.MKPlayerViewDelegate?
   @_Concurrency.MainActor(unsafe) @objc override public static var layerClass: Swift.AnyClass {
-    @_Concurrency.MainActor(unsafe) @objc get
+    @objc get
   }
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
   @_Concurrency.MainActor(unsafe) @objc override final public func layoutSubviews()
   @_Concurrency.MainActor(unsafe) final public func setBackground(image: CoreGraphics.CGImage?)
 }
@@ -258,7 +250,7 @@ public struct NodeGenerator {
 public protocol EventLayout : UIKit.UIView {
   func append(control: UIKit.UIView, params: MovikaSDK.EventLayoutParams)
   func remove(control: UIKit.UIView)
-  func measure(params: MovikaSDK.EventLayoutParams, frame: CoreGraphics.CGRect) -> CoreGraphics.CGRect
+  func measure(params: MovikaSDK.EventLayoutParams, frame: CoreFoundation.CGRect) -> CoreFoundation.CGRect
 }
 public protocol MapViewDelegate : AnyObject {
   func mapView(_ mapView: MovikaSDK.MapView, didClose: Swift.Bool)
@@ -266,8 +258,8 @@ public protocol MapViewDelegate : AnyObject {
 }
 @objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class MapView : UIKit.UIView, UIKit.UIScrollViewDelegate {
   @_Concurrency.MainActor(unsafe) weak public var delegate: MovikaSDK.MapViewDelegate?
-  @_Concurrency.MainActor(unsafe) required public init(frame: CoreGraphics.CGRect, root: MovikaSDK.Node2, showPreviewForAllNode: Swift.Bool)
-  @_Concurrency.MainActor(unsafe) required convenience public init(frame: CoreGraphics.CGRect, manifest: MovikaSDK.MKManifest, history: MovikaSDK.InteractionHistory, showPreviewForAllNode: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) required public init(frame: CoreFoundation.CGRect, root: MovikaSDK.Node2, showPreviewForAllNode: Swift.Bool)
+  @_Concurrency.MainActor(unsafe) required convenience public init(frame: CoreFoundation.CGRect, manifest: MovikaSDK.MKManifest, history: MovikaSDK.InteractionHistory, showPreviewForAllNode: Swift.Bool)
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func layoutSubviews()
   @_Concurrency.MainActor(unsafe) @objc public func viewForZooming(in scrollView: UIKit.UIScrollView) -> UIKit.UIView?
   @objc deinit
@@ -315,6 +307,11 @@ public struct MKEvent : Swift.Hashable, Swift.Codable {
   }
   public init(from decoder: Swift.Decoder) throws
 }
+extension MovikaSDK.MKEvent {
+  public var duration: Swift.Double? {
+    get
+  }
+}
 public enum VideoGravity : Swift.String, Swift.Codable {
   case resizeAspectFill, resizeAspect
   public init?(rawValue: Swift.String)
@@ -340,14 +337,6 @@ public struct ChapterPMV2 : Swift.Codable, Swift.Hashable {
 public struct InteractiveData {
   public var event: MovikaSDK.MKEvent
   public var history: MovikaSDK.InteractionHistory
-}
-@_hasMissingDesignatedInitializers final public class MKVideoPreloader {
-  final public func preload(url: Foundation.URL)
-  final public func cancelPreload(url: Foundation.URL)
-  final public func suspend()
-  final public func resume()
-  final public func cancelAll()
-  @objc deinit
 }
 @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) open class InteractiveMapViewController : UIKit.UIViewController, UIKit.UIScrollViewDelegate {
   @_Concurrency.MainActor(unsafe) open var chapters: [MovikaSDK.Chapter]!
@@ -393,7 +382,6 @@ extension MovikaSDK.VariantParams : Swift.Hashable {
 public enum VideoType : Swift.String {
   case hls
   case mp4
-  case feed
   public init?(rawValue: Swift.String)
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
@@ -452,7 +440,7 @@ public enum MKPlayerError : Swift.Error, Foundation.LocalizedError {
   }
 }
 public protocol EventView : UIKit.UIView {
-  init(frame: CoreGraphics.CGRect, data: MovikaSDK.InteractiveData, delegate: MovikaSDK.CustomEventResultDelegate)
+  init(frame: CoreFoundation.CGRect, data: MovikaSDK.InteractiveData, delegate: MovikaSDK.CustomEventResultDelegate)
   func progressDidChanged(progress: Swift.Double)
   func variantDefined(index: Swift.Int, variant: MovikaSDK.ChoiceVariant)
   func timeoutStarted()
@@ -553,7 +541,7 @@ public struct Surface : Swift.Codable {
   @_Concurrency.MainActor(unsafe) final public var eventsContainer: MovikaSDK.MKDefaultsEventsContainer {
     get
   }
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
   @_Concurrency.MainActor(unsafe) @objc required dynamic public init(coder aDecoder: Foundation.NSCoder)
   @_Concurrency.MainActor(unsafe) final public func setVideoGravity(_ videoGravity: MovikaSDK.VideoGravity)
   @_Concurrency.MainActor(unsafe) final public func setManifestAsset(_ manifestAsset: MovikaSDK.MKManifestAsset, with playerState: MovikaSDK.MKPlayerState? = nil)
@@ -604,8 +592,8 @@ public struct ChapterLink : Swift.Codable, Swift.Hashable {
   public let id: Swift.String
   public let manifestURL: Swift.String?
   public init(id: Swift.String, manifestURL: Swift.String? = nil)
-  public static func == (a: MovikaSDK.ChapterLink, b: MovikaSDK.ChapterLink) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: MovikaSDK.ChapterLink, b: MovikaSDK.ChapterLink) -> Swift.Bool
   public func encode(to encoder: Swift.Encoder) throws
   public var hashValue: Swift.Int {
     get
@@ -674,9 +662,10 @@ public struct Control : Swift.Codable, Swift.Hashable {
   public let layoutParams: Foundation.Data
   public init(id: Swift.String, type: Swift.String, events: [MovikaSDK.Control.Event], props: Foundation.Data, layoutParams: Foundation.Data)
   public struct Event : Swift.Codable, Swift.Hashable {
+    public let controlId: Swift.String
     public let type: Swift.String
     public let action: MovikaSDK.ResultAction
-    public init(type: Swift.String, action: MovikaSDK.ResultAction)
+    public init(controlId: Swift.String, type: Swift.String, action: MovikaSDK.ResultAction)
     public func hash(into hasher: inout Swift.Hasher)
     public static func == (a: MovikaSDK.Control.Event, b: MovikaSDK.Control.Event) -> Swift.Bool
     public func encode(to encoder: Swift.Encoder) throws
@@ -721,10 +710,6 @@ final public class MKReadyManifestAsset : MovikaSDK.MKManifestAsset {
   override final public func load(completion: ((MovikaSDK.MKManifest?, Swift.Error?) -> Swift.Void)?)
   @objc deinit
 }
-extension Foundation.NSNotification.Name {
-  public static let VideoDownloadProgressDidChanged: Foundation.Notification.Name
-  public static let VideoDownloadDidFinished: Foundation.Notification.Name
-}
 public struct MovieInteractionHistory {
   public let movieId: Swift.String
   public let history: MovikaSDK.InteractionHistory
@@ -738,9 +723,8 @@ public enum DeviceOrientation : Swift.String, Swift.Codable {
   }
 }
 @objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor(unsafe) public class ControlsGroupView : UIKit.UIView {
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func hitTest(_ point: CoreFoundation.CGPoint, with event: UIKit.UIEvent?) -> UIKit.UIView?
   @objc deinit
-}
-public struct VideoCacheManager {
 }
 public struct PlayerItem : Swift.Hashable {
   public let id: Swift.String
@@ -748,28 +732,20 @@ public struct PlayerItem : Swift.Hashable {
   public let video: MovikaSDK.Video
   public var masterPlaylist: Foundation.URL?
   public var cover: Foundation.URL?
-  public static func == (a: MovikaSDK.PlayerItem, b: MovikaSDK.PlayerItem) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: MovikaSDK.PlayerItem, b: MovikaSDK.PlayerItem) -> Swift.Bool
   public var hashValue: Swift.Int {
     get
   }
 }
 extension MovikaSDK.PlayerItem {
-  public var testURL: Foundation.URL? {
-    get
-  }
-  public var feedVideoURL: Foundation.URL? {
-    get
-  }
   public var previewVideoURL: Foundation.URL? {
     get
   }
 }
 public enum MovikaPlayerFacade {
-  public static func assembleCachingVideoAssetPreloader(cacheManager: MovikaSDK.VideoCacheManager) -> MovikaSDK.VideoAssetPreloader
-  public static func assembleCacheManager() throws -> MovikaSDK.VideoCacheManager
-  public static func assembleVideoPreloader(cacheManager: MovikaSDK.VideoCacheManager) throws -> MovikaSDK.MKVideoPreloader
-  public static func assemblePlayerItemPreloader(videoType: MovikaSDK.VideoType) -> MovikaSDK.PlayerItemPreloader
+  public static func assemblePlayerItemPreloader(assetsPreloader: MovikaSDK.VideoAssetPreloader) -> MovikaSDK.PlayerItemPreloader
+  public static func assembleVideoAssetPreloader(videoType: MovikaSDK.VideoType) -> MovikaSDK.VideoAssetPreloader
 }
 public struct History : Swift.Codable, Swift.Hashable {
   public var manifestId: Swift.String
@@ -849,16 +825,16 @@ extension AVFoundation.AVPlayerItem : MovikaSDK.Media {
   public func changeSubtitles(subtitlesId: Swift.String?)
 }
 @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class InteractiveContainerView : UIKit.UIView {
-  @_Concurrency.MainActor(unsafe) public var workspaceFrame: CoreGraphics.CGRect? {
+  @_Concurrency.MainActor(unsafe) public var workspaceFrame: CoreFoundation.CGRect? {
     get
   }
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func hitTest(_ point: CoreGraphics.CGPoint, with event: UIKit.UIEvent?) -> UIKit.UIView?
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func hitTest(_ point: CoreFoundation.CGPoint, with event: UIKit.UIEvent?) -> UIKit.UIView?
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
   @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
   @objc deinit
 }
 public protocol MKEventViewFactory {
-  func create(event: MovikaSDK.MKEvent, videoRect: CoreGraphics.CGRect) throws -> MovikaSDK.MKEventView?
+  func create(event: MovikaSDK.MKEvent, videoRect: CoreFoundation.CGRect) throws -> MovikaSDK.MKEventView?
 }
 public enum ChapterType : Swift.String, Swift.Codable, Swift.Hashable {
   case common
@@ -924,8 +900,17 @@ extension MovikaSDK.RelativeEventLayout.Params : Swift.Decodable {
   public init(from decoder: Swift.Decoder) throws
 }
 public struct Video : Swift.Codable, Swift.Hashable {
-  public static func == (a: MovikaSDK.Video, b: MovikaSDK.Video) -> Swift.Bool
+  public var mp4: [MovikaSDK.Variant] {
+    get
+  }
+  public var hls: [MovikaSDK.Variant] {
+    get
+  }
+  public var masterPlaylist: MovikaSDK.Variant? {
+    get
+  }
   public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: MovikaSDK.Video, b: MovikaSDK.Video) -> Swift.Bool
   public func encode(to encoder: Swift.Encoder) throws
   public var hashValue: Swift.Int {
     get
@@ -933,6 +918,11 @@ public struct Video : Swift.Codable, Swift.Hashable {
   public init(from decoder: Swift.Decoder) throws
 }
 public struct Variant : Swift.Codable, Swift.Hashable {
+  public let url: Foundation.URL
+  public let type: MovikaSDK.Variant.VideoType
+  public let standard: MovikaSDK.Variant.Standard
+  public let resolution: Swift.String?
+  public let cover: Foundation.URL?
   public init(url: Foundation.URL, type: MovikaSDK.Variant.VideoType, standard: MovikaSDK.Variant.Standard, resolution: Swift.String? = nil, cover: Foundation.URL? = nil)
   public enum VideoType : Swift.String, Swift.Codable {
     case mp4
@@ -976,10 +966,10 @@ public protocol MKPlayerDelegate : AnyObject {
   func mkplayer(_ player: MovikaSDK.MKPlayer, showChapter chapter: MovikaSDK.Chapter)
   func mkplayer(_ player: MovikaSDK.MKPlayer, showEventForChapter chapter: MovikaSDK.Chapter, with progress: Swift.Double)
   func mkplayer(_ player: MovikaSDK.MKPlayer, didAppearEventWithChapter chapter: MovikaSDK.Chapter)
+  func mkplayer(_ player: MovikaSDK.MKPlayer, didInteractWith eventContainer: MovikaSDK.MKEvent, byEvent event: MovikaSDK.Control.Event)
 }
 extension MovikaSDK.MKPlayerDelegate {
   public func mkplayer(_ player: MovikaSDK.MKPlayer, error: Swift.Error)
-  public func mkplayer(_ player: MovikaSDK.MKPlayer, result: MovikaSDK.MKEventResultAction)
   public func mkplayer(_ player: MovikaSDK.MKPlayer, isPause: Swift.Bool)
   public func mkplayer(_ player: MovikaSDK.MKPlayer, didUpdate state: MovikaSDK.MKPlayerState)
   public func mkplayer(_ player: MovikaSDK.MKPlayer, didEndPlaying manifest: MovikaSDK.MKManifest)
@@ -1086,7 +1076,7 @@ public class MKDefaultManifestDownloaderProvider : MovikaSDK.MKManifestDownloade
   @objc deinit
 }
 public protocol MKEventsContainer : MovikaSDK.MKPlayerPlaybackStateDelegate {
-  func show(event: MovikaSDK.MKEvent, videoRect: CoreGraphics.CGRect, completion: @escaping (MovikaSDK.MKEventResultAction) -> Swift.Void)
+  func show(event: MovikaSDK.MKEvent, videoRect: CoreFoundation.CGRect, completion: @escaping (MovikaSDK.MKEventResultAction) -> Swift.Void)
   func removeEvent(with eventId: Swift.String)
   func removeAllEvents()
 }
@@ -1210,16 +1200,16 @@ public protocol HistoryOwner {
     set
   }
   @_Concurrency.MainActor(unsafe) public var controlContainerSize: MovikaSDK.MKDefaultsEventsContainer.ControlContainerSize
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreGraphics.CGRect)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
   @_Concurrency.MainActor(unsafe) @objc override dynamic public func layoutSubviews()
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public func hitTest(_ point: CoreGraphics.CGPoint, with event: UIKit.UIEvent?) -> UIKit.UIView?
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func hitTest(_ point: CoreFoundation.CGPoint, with event: UIKit.UIEvent?) -> UIKit.UIView?
   @objc deinit
 }
 extension MovikaSDK.MKDefaultsEventsContainer : MovikaSDK.MKEventFactoryRegistry {
   @_Concurrency.MainActor(unsafe) public func register(factory: MovikaSDK.MKEventViewFactory, with type: Swift.String)
 }
 extension MovikaSDK.MKDefaultsEventsContainer : MovikaSDK.MKEventsContainer {
-  @_Concurrency.MainActor(unsafe) public func show(event: MovikaSDK.MKEvent, videoRect: CoreGraphics.CGRect, completion: @escaping (MovikaSDK.MKEventResultAction) -> Swift.Void)
+  @_Concurrency.MainActor(unsafe) public func show(event: MovikaSDK.MKEvent, videoRect: CoreFoundation.CGRect, completion: @escaping (MovikaSDK.MKEventResultAction) -> Swift.Void)
   @_Concurrency.MainActor(unsafe) public func removeEvent(with eventId: Swift.String)
   @_Concurrency.MainActor(unsafe) public func removeAllEvents()
 }
@@ -1228,14 +1218,14 @@ extension MovikaSDK.MKDefaultsEventsContainer : MovikaSDK.MKPlayerPlaybackStateD
 }
 extension MovikaSDK.MKDefaultsEventsContainer {
   @_Concurrency.MainActor(unsafe) @objc override dynamic public var preferredFocusEnvironments: [UIKit.UIFocusEnvironment] {
-    @_Concurrency.MainActor(unsafe) @objc get
+    @objc get
   }
 }
 extension MovikaSDK.MKDefaultsEventsContainer {
   @_Concurrency.MainActor(unsafe) public func updateVideoTime(_ time: Swift.Double)
 }
 public protocol MKPlayerView {
-  var videoRect: CoreGraphics.CGRect { get }
+  var videoRect: CoreFoundation.CGRect { get }
   var playbackController: MovikaSDK.MKPlaybackController { get }
   var playerVideoPreloader: MovikaSDK.MKPlayerVideoPreloader { get }
   var timepointsController: MovikaSDK.MKTimepointsController { get }
@@ -1243,6 +1233,7 @@ public protocol MKPlayerView {
 }
 public protocol MKPlayerViewDelegate : AnyObject {
   func notifyCurrentVideoHasEnded()
+  func notifyStartPlay(item: MovikaSDK.PlayerItem)
   func notifyReadyToPlay(item: MovikaSDK.PlayerItem)
   func notifyReaching(timepoint: Swift.Double)
 }
@@ -1264,30 +1255,13 @@ public protocol MKPlaybackController : AnyObject {
 public protocol MKTimepointsController : AnyObject {
   func appendPlayback(timepoint: Swift.Double)
 }
-extension AVFoundation.AVPlayerItem {
-  public var bufferProgress: Swift.Double {
-    get
-  }
-  public var currentBufferDuration: Swift.Double {
-    get
-  }
-  public var currentDuration: Swift.Double {
-    get
-  }
-  public var playProgress: Swift.Double {
-    get
-  }
-  public var totalDuration: Swift.Double {
-    get
-  }
-}
 public struct InteractionResult : Swift.Codable, Swift.Equatable {
   public enum BranchOpenType : Swift.Codable, Swift.Equatable {
     case immediately
     case immediatelyAfterNextLoaded
     case none
-    public static func == (a: MovikaSDK.InteractionResult.BranchOpenType, b: MovikaSDK.InteractionResult.BranchOpenType) -> Swift.Bool
     public func hash(into hasher: inout Swift.Hasher)
+    public static func == (a: MovikaSDK.InteractionResult.BranchOpenType, b: MovikaSDK.InteractionResult.BranchOpenType) -> Swift.Bool
     public func encode(to encoder: Swift.Encoder) throws
     public var hashValue: Swift.Int {
       get
@@ -1327,7 +1301,7 @@ extension MovikaSDK.MKManifest {
   }
 }
 extension UIKit.UIColor {
-  convenience public init?(hex: Swift.String, alpha: CoreGraphics.CGFloat)
+  convenience public init?(hex: Swift.String, alpha: CoreFoundation.CGFloat)
 }
 public protocol MKManifestAssetsLoader {
   func load(requestURL: Foundation.URL, manifestVersion: Swift.String, completion: @escaping (MovikaSDK.MKManifest?, Swift.Error?) -> Swift.Void)
@@ -1486,9 +1460,9 @@ extension MovikaSDK.MKEvent {
   public init(interactiveEvent: MovikaSDK.InteractiveEvent, chapterDuration: Swift.Double?)
 }
 public struct MKEventResultAction : Swift.Hashable, Swift.Codable {
-  public let event: MovikaSDK.MKEvent
-  public let resultAction: MovikaSDK.ResultAction
-  public init(event: MovikaSDK.MKEvent, resultAction: MovikaSDK.ResultAction)
+  public let eventContainer: MovikaSDK.MKEvent
+  public let event: MovikaSDK.Control.Event
+  public init(eventContainer: MovikaSDK.MKEvent, event: MovikaSDK.Control.Event)
   public func hash(into hasher: inout Swift.Hasher)
   public static func == (a: MovikaSDK.MKEventResultAction, b: MovikaSDK.MKEventResultAction) -> Swift.Bool
   public func encode(to encoder: Swift.Encoder) throws
